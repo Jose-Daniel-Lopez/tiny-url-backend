@@ -1,4 +1,4 @@
-package config;
+package com.tinyurl.config;
 
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;

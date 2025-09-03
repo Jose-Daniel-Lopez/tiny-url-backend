@@ -1,4 +1,4 @@
-package DTO;
+package com.tinyurl.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

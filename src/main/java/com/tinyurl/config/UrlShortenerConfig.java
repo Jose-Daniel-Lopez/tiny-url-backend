@@ -1,4 +1,4 @@
-package config;
+package com.tinyurl.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

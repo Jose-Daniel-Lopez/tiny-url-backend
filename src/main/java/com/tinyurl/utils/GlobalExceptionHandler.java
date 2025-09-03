@@ -1,4 +1,4 @@
-package utils;
+package com.tinyurl.utils;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +8,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import service.EntityNotFoundException;
+import com.tinyurl.service.EntityNotFoundException;
 
 import java.util.stream.Collectors;
 

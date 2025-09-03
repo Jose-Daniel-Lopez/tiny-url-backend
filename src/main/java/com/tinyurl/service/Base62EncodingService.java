@@ -1,4 +1,4 @@
-package service;
+package com.tinyurl.service;
 
 import org.springframework.stereotype.Service;
 

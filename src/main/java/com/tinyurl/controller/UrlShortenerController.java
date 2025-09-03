@@ -1,14 +1,14 @@
-package controller;
+package com.tinyurl.controller;
 
-import DTO.ShortenUrlRequest;
-import DTO.ShortenUrlResponse;
+import com.tinyurl.DTO.ShortenUrlRequest;
+import com.tinyurl.DTO.ShortenUrlResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import service.EntityNotFoundException;
-import service.UrlShortenerService;
+import com.tinyurl.service.EntityNotFoundException;
+import com.tinyurl.service.UrlShortenerService;
 
 import java.net.URI;
 

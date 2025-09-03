@@ -1,4 +1,4 @@
-package entity;
+package com.tinyurl.entity;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

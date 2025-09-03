@@ -1,4 +1,4 @@
-package utils;
+package com.tinyurl.utils;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,6 +1,6 @@
-package repository;
+package com.tinyurl.repository;
 
-import entity.UrlEntity;
+import com.tinyurl.entity.UrlEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;

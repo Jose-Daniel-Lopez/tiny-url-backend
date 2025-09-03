@@ -1,6 +1,6 @@
-package service;
+package com.tinyurl.service;
 
-import entity.UrlEntity;
+import com.tinyurl.entity.UrlEntity;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;

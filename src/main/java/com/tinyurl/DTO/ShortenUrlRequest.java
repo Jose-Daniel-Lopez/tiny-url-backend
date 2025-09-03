@@ -1,4 +1,4 @@
-package DTO;
+package com.tinyurl.DTO;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

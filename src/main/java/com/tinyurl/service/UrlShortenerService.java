@@ -1,13 +1,12 @@
-package service;
+package com.tinyurl.service;
 
-import config.UrlShortenerConfig;
-import entity.UrlEntity;
+import com.tinyurl.config.UrlShortenerConfig;
+import com.tinyurl.entity.UrlEntity;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import repository.UrlRepository;
+import com.tinyurl.repository.UrlRepository;
 
-import java.net.URL;
 import java.util.Optional;
 
 @Service
