@@ -55,6 +55,20 @@ public class UrlShortenerController {
         }
     }
 
+    @GetMapping("/{shortCode}")
+    public ResponseEntity<Void> redirectToOriginalUrl(@PathVariable String shortCode) {
+        try {
+            String originalUrl = urlService.getOriginalUrl(shortCode);
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setLocation(URI.create(originalUrl));
+
+            return new ResponseEntity<>(headers, HttpStatus.FOUND);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping("/shorten")
     public ResponseEntity<ShortenUrlResponse> shortenUrl(@Valid @RequestBody ShortenUrlRequest request) {
         try {
