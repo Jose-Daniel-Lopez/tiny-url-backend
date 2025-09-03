@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class UrlListResponse {
+@NoArgsConstructor
+public class UrlInfoResponse {
     private String shortUrl;
     private String originalUrl;
     private String alias;

@@ -12,14 +12,8 @@ import java.util.Optional;
 @Repository
 public interface UrlRepository extends MongoRepository<UrlEntity, String> {
 
-    Optional<UrlEntity> findByNumericId(Long numericId);
-
     Optional<UrlEntity> findByAlias(String alias);
 
     @Query("{ 'expiresDate' : { $lt: ?0 } }")
     List<UrlEntity> findExpiredUrls(Date currentDate);
-
-    // Custom query to get next sequence number
-    @Query(value = "{}", sort = "{ 'numericId' : -1 }")
-    Optional<UrlEntity> findTopByOrderByNumericIdDesc();
 }

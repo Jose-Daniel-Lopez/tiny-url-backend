@@ -15,6 +15,7 @@ public class ShortenUrlRequest {
     @URL(message = "Invalid URL format")
     private String originalUrl;
 
-    @Pattern(regexp = "^[a-zA-Z0-9_-]*$", message = "Alias can only contain letters, numbers, hyphens, and underscores")
+    @NotBlank(message = "Alias cannot be blank")
+    @Pattern(regexp = "^[a-zA-Z0-9_-]+$", message = "Alias can only contain letters, numbers, hyphens, and underscores")
     private String alias;
 }

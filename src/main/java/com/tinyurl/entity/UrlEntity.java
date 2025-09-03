@@ -21,13 +21,10 @@ public class UrlEntity {
     @Id
     private String id;
 
-    @Indexed
-    private Long numericId;
-
     @NotBlank
     private String originalUrl;
 
-    @Indexed(unique = true, sparse = true)
+    @Indexed(unique = true)
     private String alias;
 
     @CreatedDate
