@@ -2,6 +2,7 @@ package com.tinyurl.controller;
 
 import com.tinyurl.DTO.ShortenUrlRequest;
 import com.tinyurl.DTO.ShortenUrlResponse;
+import com.tinyurl.DTO.UrlListResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import com.tinyurl.service.EntityNotFoundException;
 import com.tinyurl.service.UrlShortenerService;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -23,11 +25,11 @@ public class UrlShortenerController {
         this.urlService = urlService;
     }
 
-    @PostMapping("/shorten")
-    public ResponseEntity<ShortenUrlResponse> shortenUrl(@Valid @RequestBody ShortenUrlRequest request) {
+    @GetMapping("/urls")
+    public ResponseEntity<List<UrlListResponse>> getAllUrls() {
         try {
-            String shortUrl = urlService.shortenUrl(request.getOriginalUrl());
-            return ResponseEntity.ok(new ShortenUrlResponse(shortUrl));
+            List<UrlListResponse> urls = urlService.getAllUrls();
+            return ResponseEntity.ok(urls);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
@@ -46,5 +48,26 @@ public class UrlShortenerController {
             return ResponseEntity.notFound().build();
         }
     }
-}
 
+    @PostMapping("/shorten")
+    public ResponseEntity<ShortenUrlResponse> shortenUrl(@Valid @RequestBody ShortenUrlRequest request) {
+        try {
+            String shortUrl = urlService.shortenUrl(request.getOriginalUrl());
+            return ResponseEntity.ok(new ShortenUrlResponse(shortUrl));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> deleteUrl(@PathVariable String id) {
+        try {
+            urlService.deleteUrl(id);
+            return ResponseEntity.noContent().build();
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+}

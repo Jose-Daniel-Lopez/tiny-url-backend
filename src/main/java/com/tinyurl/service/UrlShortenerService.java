@@ -1,5 +1,6 @@
 package com.tinyurl.service;
 
+import com.tinyurl.DTO.UrlListResponse;
 import com.tinyurl.config.UrlShortenerConfig;
 import com.tinyurl.entity.UrlEntity;
 import org.springframework.cache.annotation.Cacheable;
@@ -7,7 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.tinyurl.repository.UrlRepository;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -62,5 +65,28 @@ public class UrlShortenerService {
 
         return entity.getOriginalUrl();
     }
-}
 
+    public List<UrlListResponse> getAllUrls() {
+        List<UrlEntity> allUrls = urlRepository.findAll();
+
+        return allUrls.stream()
+                .map(entity -> {
+                    String shortCode = encodingService.encode(entity.getNumericId());
+                    String shortUrl = config.getBaseUrl() + shortCode;
+                    return new UrlListResponse(
+                            shortUrl,
+                            entity.getOriginalUrl(),
+                            entity.getCreatedDate(),
+                            entity.getClickCount()
+                    );
+                })
+                .collect(Collectors.toList());
+    }
+
+    public void deleteUrl(String id) throws EntityNotFoundException {
+        if (!urlRepository.existsById(id)) {
+            throw new EntityNotFoundException("URL not found with id: " + id);
+        }
+        urlRepository.deleteById(id);
+    }
+}
