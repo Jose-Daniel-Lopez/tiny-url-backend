@@ -27,6 +27,9 @@ public class UrlEntity {
     @NotBlank
     private String originalUrl;
 
+    @Indexed(unique = true, sparse = true)
+    private String alias;
+
     @CreatedDate
     private Date createdDate;
 
@@ -34,4 +37,8 @@ public class UrlEntity {
 
     @Version
     private Long version;
+
+    public boolean isEmpty() {
+        return (originalUrl == null || originalUrl.trim().isEmpty());
+    }
 }

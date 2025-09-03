@@ -14,6 +14,8 @@ public interface UrlRepository extends MongoRepository<UrlEntity, String> {
 
     Optional<UrlEntity> findByNumericId(Long numericId);
 
+    Optional<UrlEntity> findByAlias(String alias);
+
     @Query("{ 'expiresDate' : { $lt: ?0 } }")
     List<UrlEntity> findExpiredUrls(Date currentDate);
 
@@ -21,4 +23,3 @@ public interface UrlRepository extends MongoRepository<UrlEntity, String> {
     @Query(value = "{}", sort = "{ 'numericId' : -1 }")
     Optional<UrlEntity> findTopByOrderByNumericIdDesc();
 }
-

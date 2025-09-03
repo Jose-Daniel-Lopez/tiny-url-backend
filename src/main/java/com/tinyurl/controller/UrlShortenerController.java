@@ -62,8 +62,10 @@ public class UrlShortenerController {
     @PostMapping("/shorten")
     public ResponseEntity<ShortenUrlResponse> shortenUrl(@Valid @RequestBody ShortenUrlRequest request) {
         try {
-            String shortUrl = urlService.shortenUrl(request.getOriginalUrl());
+            String shortUrl = urlService.shortenUrl(request.getOriginalUrl(), request.getAlias());
             return ResponseEntity.ok(new ShortenUrlResponse(shortUrl));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
@@ -72,14 +74,30 @@ public class UrlShortenerController {
     @DeleteMapping("/urls/{shortCode}")
     public ResponseEntity<Void> deleteUrl(@PathVariable String shortCode) {
         try {
-            Long numericId = encodingService.decode(shortCode);
+            UrlEntity urlEntity = null;
 
-            Optional<UrlEntity> urlEntity = urlRepository.findByNumericId(numericId);
-            if (urlEntity.isEmpty()) {
+            // First try to find by alias
+            Optional<UrlEntity> urlByAlias = urlRepository.findByAlias(shortCode);
+            if (urlByAlias.isPresent()) {
+                urlEntity = urlByAlias.get();
+            } else {
+                // If not found by alias, try to decode as numeric ID
+                try {
+                    Long numericId = encodingService.decode(shortCode);
+                    Optional<UrlEntity> urlByNumeric = urlRepository.findByNumericId(numericId);
+                    if (urlByNumeric.isPresent()) {
+                        urlEntity = urlByNumeric.get();
+                    }
+                } catch (Exception e) {
+                    // Invalid encoding, urlEntity remains null
+                }
+            }
+
+            if (urlEntity == null) {
                 return ResponseEntity.notFound().build();
             }
 
-            urlRepository.delete(urlEntity.get());
+            urlRepository.delete(urlEntity);
             return ResponseEntity.noContent().build();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
