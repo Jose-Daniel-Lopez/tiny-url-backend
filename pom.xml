@@ -51,7 +51,6 @@
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-starter-vector-store-mongodb-atlas</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
