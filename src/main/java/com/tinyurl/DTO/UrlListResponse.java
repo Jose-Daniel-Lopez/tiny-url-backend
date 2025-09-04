@@ -1,8 +1,10 @@
 package com.tinyurl.DTO;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -116,6 +118,8 @@ public class UrlListResponse {
      * <p><strong>Display:</strong> Often formatted as relative time ("2 days ago")
      * or abbreviated date format ("Jan 15, 2024") in list UI components.</p>
      */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private Date createdDate;
 
     /**
