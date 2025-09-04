@@ -6,6 +6,7 @@ import com.tinyurl.config.UrlShortenerConfig;
 import com.tinyurl.entity.UrlEntity;
 import com.tinyurl.repository.UrlRepository;
 
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -96,12 +97,13 @@ public class UrlShortenerService {
      * </ol>
      *
      * @param originalUrl the complete URL to be shortened (validated by DTO layer)
-     * @param alias the custom alias for the shortened URL (cannot be null/empty)
+     * @param alias       the custom alias for the shortened URL (cannot be null/empty)
+     * @param authCode
      * @return the complete shortened URL string (baseUrl + alias)
      * @throws IllegalArgumentException if alias is null, empty, or already exists
      * @see UrlShortenerConfig#getBaseUrl()
      */
-    public String shortenUrl(String originalUrl, String alias) {
+    public String shortenUrl(String originalUrl, String alias, @NotBlank(message = "Auth code cannot be blank") String authCode) {
         // Validate alias is provided
         if (alias == null || alias.trim().isEmpty()) {
             throw new IllegalArgumentException("Alias is required");

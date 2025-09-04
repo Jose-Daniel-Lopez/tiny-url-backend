@@ -11,6 +11,7 @@ import com.tinyurl.service.UrlShortenerService;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -59,6 +60,9 @@ public class UrlShortenerController {
 
     private final UrlShortenerService urlService;
     private final UrlRepository urlRepository;
+
+    @Value("${tinyurl.auth-code}")
+    private String configuredAuthCode;
 
     /**
      * Constructs a new UrlShortenerController with required dependencies.
@@ -161,7 +165,11 @@ public class UrlShortenerController {
     @PostMapping("/shorten")
     public ResponseEntity<ShortenUrlResponse> shortenUrl(@Valid @RequestBody ShortenUrlRequest request) {
         try {
-            String shortUrl = urlService.shortenUrl(request.getOriginalUrl(), request.getAlias());
+            if (!request.getAuthCode().equals(configuredAuthCode)) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                        .body(new ShortenUrlResponse("Invalid authorization code."));
+            }
+            String shortUrl = urlService.shortenUrl(request.getOriginalUrl(), request.getAlias(), request.getAuthCode());
             return ResponseEntity.ok(new ShortenUrlResponse(shortUrl));
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();

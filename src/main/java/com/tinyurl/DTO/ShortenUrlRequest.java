@@ -70,6 +70,25 @@ public class ShortenUrlRequest {
     private String originalUrl;
 
     /**
+     * Authorization code for secure URL creation.
+     *
+     * <p>This field is used to validate that the request to create a shortened URL
+     * is authorized. It must be a non-blank string provided by the client making
+     * the request. The actual authorization logic should be implemented in the
+     * service layer.</p>
+     *
+     * <p><strong>Validation rules:</strong></p>
+     * <ul>
+     *   <li>Cannot be null, empty, or contain only whitespace</li>
+     * </ul>
+     *
+     * <p><strong>Security considerations:</strong> Ensure that the auth code is
+     * securely managed and validated to prevent unauthorized URL shortening requests.</p>
+     */
+    @NotBlank(message = "Auth code cannot be blank")
+    private String authCode;
+
+    /**
      * Custom alias for the shortened URL.
      *
      * <p>This field allows users to specify a custom, human-readable identifier
