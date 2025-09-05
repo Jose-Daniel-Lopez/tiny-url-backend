@@ -1,0 +1,6 @@
+# Ignore environment variable files
+.env
+target/
+*.class
+.idea, *.iml, .project, .classpath, .settings/
+
