@@ -1,5 +1,6 @@
 /Users/josedaniel/Documents/JAVA/Personal Projects/TinyUrl/backend/Tiny-Url/src/main/java/com/tinyurl/DTO/ShortenUrlRequest.java
 /Users/josedaniel/Documents/JAVA/Personal Projects/TinyUrl/backend/Tiny-Url/src/main/java/com/tinyurl/DTO/ShortenUrlResponse.java
+/Users/josedaniel/Documents/JAVA/Personal Projects/TinyUrl/backend/Tiny-Url/src/main/java/com/tinyurl/DTO/UrlInfoResponse.java
 /Users/josedaniel/Documents/JAVA/Personal Projects/TinyUrl/backend/Tiny-Url/src/main/java/com/tinyurl/DTO/UrlListResponse.java
 /Users/josedaniel/Documents/JAVA/Personal Projects/TinyUrl/backend/Tiny-Url/src/main/java/com/tinyurl/TinyUrlApplication.java
 /Users/josedaniel/Documents/JAVA/Personal Projects/TinyUrl/backend/Tiny-Url/src/main/java/com/tinyurl/config/CacheConfig.java
@@ -11,7 +12,6 @@
 /Users/josedaniel/Documents/JAVA/Personal Projects/TinyUrl/backend/Tiny-Url/src/main/java/com/tinyurl/repository/UrlRepository.java
 /Users/josedaniel/Documents/JAVA/Personal Projects/TinyUrl/backend/Tiny-Url/src/main/java/com/tinyurl/service/Base62EncodingService.java
 /Users/josedaniel/Documents/JAVA/Personal Projects/TinyUrl/backend/Tiny-Url/src/main/java/com/tinyurl/service/EntityNotFoundException.java
-/Users/josedaniel/Documents/JAVA/Personal Projects/TinyUrl/backend/Tiny-Url/src/main/java/com/tinyurl/service/SequenceGeneratorService.java
 /Users/josedaniel/Documents/JAVA/Personal Projects/TinyUrl/backend/Tiny-Url/src/main/java/com/tinyurl/service/UrlShortenerService.java
 /Users/josedaniel/Documents/JAVA/Personal Projects/TinyUrl/backend/Tiny-Url/src/main/java/com/tinyurl/utils/ErrorResponse.java
 /Users/josedaniel/Documents/JAVA/Personal Projects/TinyUrl/backend/Tiny-Url/src/main/java/com/tinyurl/utils/GlobalExceptionHandler.java

@@ -124,7 +124,7 @@ public class UrlShortenerService {
         urlRepository.save(urlEntity);
 
         // Return complete shortened URL
-        return config.getBaseUrl() + alias.trim();
+        return config.getBaseUrl() + "/" + alias.trim();
     }
 
     /**
@@ -198,7 +198,7 @@ public class UrlShortenerService {
 
         return allUrls.stream()
                 .map(entity -> {
-                    String shortUrl = config.getBaseUrl() + entity.getAlias();
+                    String shortUrl = config.getBaseUrl() + "/" + entity.getAlias();
                     return new UrlListResponse(
                             shortUrl,
                             entity.getOriginalUrl(),
@@ -245,7 +245,7 @@ public class UrlShortenerService {
         }
 
         UrlEntity entity = urlEntityByAlias.get();
-        String shortUrl = config.getBaseUrl() + entity.getAlias();
+        String shortUrl = config.getBaseUrl() + "/" + entity.getAlias();
 
         return new UrlInfoResponse(
                 shortUrl,
