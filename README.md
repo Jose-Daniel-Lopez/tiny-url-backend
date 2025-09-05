@@ -1,6 +1,6 @@
 # NeoUrl - URL Shortener Backend
 
-<div align="center">
+<div align="center"> 
 
 ![NeoUrl Logo](https://img.shields.io/badge/NeoUrl-URL%20Shortener-blue?style=for-the-badge)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
